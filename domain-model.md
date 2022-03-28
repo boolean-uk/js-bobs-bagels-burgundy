@@ -1,14 +1,16 @@
 
-| object | properties                   | method      | input                                   | output                         |
+| Object | Properties                   | Method      | Input                                   | Output                         |
 | ------ | ---------------------------- | ----------- | --------------------------------------- | ------------------------------ |
 | Menu   |                              | getMenu{}   |                                         | menu object                    |
 |        |                              |             |                                         |                                |
-| Basket | basket = [], basket-size = # | getBasket[] |                                         | basket [array]                 |
+| Basket | basket = [], basket-size = # | getBasket() |                                         | basket [array]                 |
 |        |                              | addItem()   | item name(str), item quantity(#)        | no output                      |
 |        |                              | removeItem()| item name(str)                          | basket [array] or error (str)  |
-|        |                              | basketcapacity()|                                     | items in basket (#), < error   |
-|        |                              | priceChecker()| item name(str)                        |                                |
-|        |                              | basketTotal() |                                       | total price (#)                |
+|        |                              | basketcapacity|                                       | items in basket (#), < error   |
+|        |                              | priceChecker| item name(str)                          |                                |
+|        |                              | basketTotal |                                         | total price (#)                |
+
+-=+=-
 
 ** User Stories
 
