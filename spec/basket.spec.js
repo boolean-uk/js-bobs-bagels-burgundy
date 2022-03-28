@@ -50,7 +50,7 @@ describe("Basket", () => {
     expect(alert).toEqual(expected);
   });
 
-  // For when the basket is overflowing --------------------------------------------
+  // Test 4.1 - For when the basket is overflowing --------------------------------------------
   it("Alert when basket is overflowing", () => {
     const expected = "Basket full, Please choose a bigger basket.";
 
@@ -64,7 +64,7 @@ describe("Basket", () => {
   it("Create basket with larger size", () => {
     const expected = (this.basketSize = largeBasket);
 
-    new Basket(largeBasket);
+    new Basket(largeBasket); //
     let checkSize = this.basketSize;
     expect(checkSize).toEqual(expected);
   });
