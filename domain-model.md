@@ -12,7 +12,8 @@
 
 ** User Stories
 
-Part I
+Part I //
+------------
 As a member of the public
 So I can order a bagel when I want to
 I'd like to add an item to my basket.
@@ -27,7 +28,8 @@ addItemToBasket() (addItemToBasket = .push[basketItems]) => invoke isBasketFull(
 removeItemFromBasket()
 
 
-Part II
+Part II //
+------------
 As a member of the public,
 So that I can not overfill my small bagel basket
 I'd like to know when my basket is full when I try adding an item beyond my basket capacity.
@@ -45,7 +47,8 @@ Methods:
 isBasketFull() (return a boolean depending on capacity of basket - small 5, medium 10, large 15 items)
 
 
-Part III
+Part III //
+------------
 As a member of the public,
 So that I can know how much my bagels are,
 I’d like to see the price of each item before I add it to my basket.
