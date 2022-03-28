@@ -10,10 +10,18 @@ describe("Basket", () => {
   });
 
   // Test 1
-  it("Get all basket", () => {
+  it("Get all of the basket", () => {
     const expected = [];
     let getBasket = basket.getBasket();
     expect(getBasket).toEqual(expected);
+  });
+
+  // Test 1.1 - Test for adding an item that does not exist
+  it("Can't add an item that doesn't exist", () => {
+    const expected = "This item doesn't exist";
+    let result = basket.addItem("jam", 1);
+    let bagelInBasket = basket.getBasket();
+    expect(result).toEqual(expected); // --------------------------------------------
   });
 
   // Test 2
