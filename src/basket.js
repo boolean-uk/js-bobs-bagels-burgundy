@@ -10,19 +10,27 @@ class Basket {
     this.basket = [];
     this.basketSize = capacity;
   }
+
   getBasket() {
     return this.basket;
   }
+
   addItem(itemName, itemQuantity) {
+    let itemFound = false;
     for (const items in fullMenu) {
       if (items === itemName) {
-        const insideBasket = {
+        const newItem = {
           item: itemName,
           quantity: itemQuantity,
           price: fullMenu[items],
         };
-        this.basket.push(insideBasket);
+        this.basket.push(newItem);
+        itemFound = true;
+        break;
       }
+    }
+    if (itemFound === false) {
+      return "This item doesn't exist";
     }
   }
 
@@ -46,6 +54,7 @@ class Basket {
   }
 
   priceChecker(itemName) {
+    // const fullMenu = MENU.GetMenu();
     for (const items in fullMenu)
       if (itemName === items) {
         return fullMenu[items];
