@@ -9,14 +9,14 @@ describe("Basket", () => {
     basket = new Basket();
   });
 
-  //Test 1
+  // Test 1
   it("Get all basket", () => {
     const expected = [];
     let getBasket = basket.getBasket();
     expect(getBasket).toEqual(expected);
   });
 
-  //Test 2
+  // Test 2
   it("Add items to basket", () => {
     const expected = [
       { item: "bagel", quantity: 1, price: 2.99 },
@@ -29,7 +29,7 @@ describe("Basket", () => {
     expect(bagelInBasket).toEqual(expected);
   });
 
-  //Test 3
+  // Test 3
   it("Remove bagel from basket", () => {
     const expected = (this.basket = [
       { item: "brownie", quantity: 3, price: 3.99 },
@@ -41,8 +41,17 @@ describe("Basket", () => {
     expect(removeItem).toEqual(expected);
   });
 
-  //Test 4
+  // Test 4 - Create a test for matching the capacity -------------------------------
   it("Alert when basket is full", () => {
+    const expected = "Basket full, Please choose a bigger basket.";
+
+    basket.addItem("brownie", 5);
+    let alert = basket.basketCapacity();
+    expect(alert).toEqual(expected);
+  });
+
+  // For when the basket is overflowing --------------------------------------------
+  it("Alert when basket is overflowing", () => {
     const expected = "Basket full, Please choose a bigger basket.";
 
     basket.addItem("bagel", 3);
@@ -51,7 +60,7 @@ describe("Basket", () => {
     expect(alert).toEqual(expected);
   });
 
-  //Test 5
+  // Test 5
   it("Create basket with larger size", () => {
     const expected = (this.basketSize = largeBasket);
 
@@ -60,7 +69,7 @@ describe("Basket", () => {
     expect(checkSize).toEqual(expected);
   });
 
-  //Test 6
+  // Test 6
   it("Alert when trying to remove item that doesn't exist inside basket", () => {
     const expected = "This item is not in the basket.";
 
@@ -70,7 +79,7 @@ describe("Basket", () => {
     expect(alert).toEqual(expected);
   });
 
-  //Test 7
+  // Test 7 - test for if the item doesn't exist
   it("price checker for items", () => {
     const expected = 3.99;
 
@@ -79,7 +88,7 @@ describe("Basket", () => {
     expect(checkPrice).toEqual(expected);
   });
 
-  //Test 8
+  // Test 8
   it("favorite bagel quantity", () => {
     const expected = [
       { item: "chocolateBagel", quantity: 1, price: 4.99 },
