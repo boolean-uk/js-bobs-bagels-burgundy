@@ -3,6 +3,8 @@ const smallBasket = 5;
 const mediumBasket = 10;
 const largeBasket = 15;
 
+const fullMenu = MENU.GetMenu();
+
 class Basket {
   constructor(capacity = smallBasket) {
     this.basket = [];
@@ -12,7 +14,6 @@ class Basket {
     return this.basket;
   }
   addItem(itemName, itemQuantity) {
-    const fullMenu = MENU.GetMenu();
     for (const items in fullMenu) {
       if (items === itemName) {
         const insideBasket = {
@@ -34,6 +35,7 @@ class Basket {
         return "This item is not in the basket.";
   }
 
+  // refactor - quantity.quantity?
   basketCapacity() {
     const totalCapacity = this.basket.reduce((total, quantity) => {
       return total + quantity.quantity;
@@ -44,7 +46,6 @@ class Basket {
   }
 
   priceChecker(itemName) {
-    const fullMenu = MENU.GetMenu();
     for (const items in fullMenu)
       if (itemName === items) {
         return fullMenu[items];
