@@ -38,7 +38,7 @@ class Basket {
     const totalCapacity = this.basket.reduce((total, quantity) => {
       return total + quantity.quantity;
     }, 0);
-    if (totalCapacity > this.basketSize) {
+    if (totalCapacity >= this.basketSize) {
       return "Basket full, Please choose a bigger basket.";
     }
   }

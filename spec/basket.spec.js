@@ -61,7 +61,7 @@ describe("Basket", () => {
   });
 
   //Test 6
-  it("Alert when trying to remove item that doesnt exist inside basket", () => {
+  it("Alert when trying to remove item that doesn't exist inside basket", () => {
     const expected = "This item is not in the basket.";
 
     basket.addItem("bagel", 3);
