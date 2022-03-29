@@ -1,9 +1,9 @@
 const MENU = require("./menu.js");
+const Item = require("./item.js");
+const fullMenu = MENU.GetMenu();
 const smallBasket = 5;
 const mediumBasket = 10;
 const largeBasket = 15;
-
-const fullMenu = MENU.GetMenu();
 
 class Basket {
   constructor(capacity = smallBasket) {
@@ -17,21 +17,15 @@ class Basket {
 
   addItem(itemName, itemQuantity) {
     let itemFound = false;
-    for (const items in fullMenu) {
-      if (items === itemName) {
-        const newItem = {
-          item: itemName,
-          quantity: itemQuantity,
-          price: fullMenu[items],
-        };
+    for (const item in fullMenu) {
+      if (item === itemName) {
+        const newItem = new Item(itemName, itemQuantity, fullMenu[item]);
         this.basket.push(newItem);
         itemFound = true;
         break;
       }
     }
-    if (itemFound === false) {
-      return "This item doesn't exist";
-    }
+    if (itemFound === false) return "this item does not exist";
   }
 
   removeItem(itemName) {
@@ -43,22 +37,18 @@ class Basket {
         return "This item is not in the basket.";
   }
 
-  // refactor - quantity.quantity?
   basketCapacity() {
-    const totalCapacity = this.basket.reduce((total, quantity) => {
-      return total + quantity.quantity;
-    }, 0);
-    if (totalCapacity >= this.basketSize) {
+    const totalCapacity = this.basket.reduce(
+      (total, basketItem) => total + basketItem.quantity,
+      0
+    );
+    if (totalCapacity >= this.basketSize)
       return "Basket full, Please choose a bigger basket.";
-    }
   }
 
   priceChecker(itemName) {
-    // const fullMenu = MENU.GetMenu();
     for (const items in fullMenu)
-      if (itemName === items) {
-        return fullMenu[items];
-      }
+      if (itemName === items) return fullMenu[items];
   }
 
   basketTotal() {
@@ -66,11 +56,14 @@ class Basket {
     for (let i = 0; i < this.basket.length; i++) {
       eachItem.push(this.basket[i].quantity * this.basket[i].price);
     }
-    const totalPrice = eachItem.reduce((total, quantity) => {
-      return total + quantity;
-    }, 0);
+    const totalPrice = eachItem.reduce(
+      (total, quantity) => total + quantity,
+      0
+    );
     return "£" + totalPrice;
   }
 }
+
+// itemExists() function - if (itemName === items) repeated a lot
 
 module.exports = Basket;
