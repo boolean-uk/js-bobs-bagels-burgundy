@@ -43,7 +43,7 @@ describe("Basket", () => {
   });
 
   //Test 3
-  fit("Remove bagel from basket", () => {
+  it("Remove bagel from basket", () => {
     const expected = [new Item("brownie", 3, 3.99)];
 
     basket.addItem("bagel", 1);
@@ -105,11 +105,9 @@ describe("Basket", () => {
 
   //Test 8
   it("favourite bagel quantity", () => {
-    const expected = [
-      { item: "chocolateBagel", quantity: 1, price: 4.99 },
-      { item: "chocolateBagel", quantity: 1, price: 4.99 },
-      { item: "chocolateBagel", quantity: 1, price: 4.99 },
-    ];
+    const favouriteBagel = new Item("chocolateBagel", 1, 4.99);
+
+    const expected = [favouriteBagel, favouriteBagel, favouriteBagel];
 
     basket.addItem("chocolateBagel", 1);
     basket.addItem("chocolateBagel", 1);
