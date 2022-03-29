@@ -27,19 +27,24 @@ class Basket {
     }
     if (itemFound === false) return "this item does not exist";
   }
-  // const newItem = {
-  //   item: itemName,
-  //   quantity: itemQuantity,
-  //   price: fullMenu[item],
-  // };
 
   removeItem(itemName) {
-    for (let i = 0; i < this.basket.length; i++)
-      if (this.basket[i].item === itemName) {
-        this.basket.splice(i, 1);
-        return this.basket;
-      } else if (this.basket[i].item !== itemName)
-        return "This item is not in the basket.";
+    // for (let i = 0; i < this.basket.length; i++) {
+    //   console.log(this.basket[i].item);
+    //   if (this.basket[i].item === itemName) {
+    //     this.basket.splice(i, 1);
+    //     return this.basket;
+    //   } else if (this.basket[i].item !== itemName)
+    //     return "This item is not in the basket.";
+    // }
+    const selectedItemIndex = this.basket.findIndex(
+      (bagel) => bagel.name === itemName
+    );
+
+    if (selectedItemIndex === -1) return "This item is not in the basket.";
+
+    this.basket.splice(selectedItemIndex, 1);
+    return this.basket;
   }
 
   basketCapacity() {
