@@ -1,4 +1,5 @@
 const MENU = require("./menu.js");
+const Item = require("./item.js");
 const smallBasket = 5;
 const mediumBasket = 10;
 const largeBasket = 15;
@@ -16,12 +17,8 @@ class Basket {
     let itemFound = false;
     for (const items in fullMenu) {
       if (items === itemName) {
-        const newItem = {
-          item: itemName,
-          quantity: itemQuantity,
-          price: fullMenu[items],
-        };
-        this.basket.push(newItem);
+        const itemToAdd = new Item(itemName, itemQuantity, fullMenu[items]);
+        this.basket.push(itemToAdd);
         itemFound = true;
         break;
       }
@@ -32,12 +29,12 @@ class Basket {
   }
 
   removeItem(itemName) {
-    for (let i = 0; i < this.basket.length; i++)
-      if (this.basket[i].item === itemName) {
-        this.basket.splice(i, 1);
-        return this.basket;
-      } else if (this.basket[i].item !== itemName)
-        return "This item is not in the basket.";
+    const selectedItemIndex = this.basket.findIndex(
+      (bagel) => bagel.name === itemName
+    );
+    if (selectedItemIndex === -1) return "This item is not in the basket.";
+    this.basket.splice(selectedItemIndex, 1);
+    return this.basket;
   }
 
   basketCapacity() {

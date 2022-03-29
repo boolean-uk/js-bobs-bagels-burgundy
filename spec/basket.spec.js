@@ -1,4 +1,7 @@
 const Basket = require("../src/basket.js");
+const Item = require("../src/item.js");
+const Receipt = require("../src/receipt.js");
+
 describe("Basket", () => {
   let basket;
   const smallBasket = 5;
@@ -7,6 +10,7 @@ describe("Basket", () => {
 
   beforeEach(() => {
     basket = new Basket();
+    receipt = new Receipt();
   });
 
   //Test 1
@@ -18,19 +22,16 @@ describe("Basket", () => {
 
   //Test 2
   it("Add items to basket", () => {
-    const expected = [
-      { item: "bagel", quantity: 1, price: 2.99 },
-      { item: "brownie", quantity: 3, price: 3.99 },
-    ];
-
+    const itemOne = new Item("bagel", 1, 2.99);
+    const itemTwo = new Item("brownie", 3, 3.99);
+    const expected = [itemOne, itemTwo];
     basket.addItem("bagel", 1);
     basket.addItem("brownie", 3);
     let bagelInBasket = basket.getBasket();
     expect(bagelInBasket).toEqual(expected);
   });
 
-
-   it("Add items to basket what is NOT on the menu", () => {
+  it("Add items to basket what is NOT on the menu", () => {
     const expected = "Item is not on the menu, chose something else";
     basket.addItem("bagel", 1);
     basket.addItem("brownie", 3);
@@ -40,17 +41,15 @@ describe("Basket", () => {
 
   //Test 3
   it("Remove bagel from basket", () => {
-    const expected = (this.basket = [
-      { item: "brownie", quantity: 3, price: 3.99 },
-    ]);
-
+    const itemOne = new Item("brownie", 3, 3.99);
+    const expected = [itemOne];
     basket.addItem("bagel", 1);
     basket.addItem("brownie", 3);
-    let removeItem = basket.removeItem("bagel");
-    expect(removeItem).toEqual(expected);
+    let result = basket.removeItem("bagel");
+    expect(result).toEqual(expected);
   });
 
-  //Test 4 
+  //Test 4
   it("Alert when basket is overflowing", () => {
     const expected = "Basket full, Please choose a bigger basket.";
 
@@ -59,8 +58,8 @@ describe("Basket", () => {
     let alert = basket.basketCapacity();
     expect(alert).toEqual(expected);
   });
-  
-    it("Also alert when basket is just full", () => {
+
+  it("Also alert when basket is just full", () => {
     const expected = "Basket full, Please choose a bigger basket.";
 
     basket.addItem("bagel", 3);
@@ -99,11 +98,11 @@ describe("Basket", () => {
 
   //Test 8
   it("favourite bagel quantity", () => {
-    const expected = [
-      { item: "chocolateBagel", quantity: 1, price: 4.99 },
-      { item: "chocolateBagel", quantity: 1, price: 4.99 },
-      { item: "chocolateBagel", quantity: 1, price: 4.99 },
-    ];
+    const itemOne = new Item("chocolateBagel", 1, 4.99);
+    const itemTwo = new Item("chocolateBagel", 1, 4.99);
+    const itemThree = new Item("chocolateBagel", 1, 4.99);
+
+    const expected = [itemOne, itemTwo, itemThree];
 
     basket.addItem("chocolateBagel", 1);
     basket.addItem("chocolateBagel", 1);
