@@ -2,6 +2,7 @@ const MENU = require("./menu.js");
 const smallBasket = 5;
 const mediumBasket = 10;
 const largeBasket = 15;
+const fullMenu = MENU.GetMenu();
 
 class Basket {
   constructor(capacity = smallBasket) {
@@ -12,16 +13,21 @@ class Basket {
     return this.basket;
   }
   addItem(itemName, itemQuantity) {
-    const fullMenu = MENU.GetMenu();
+    let itemFound = false;
     for (const items in fullMenu) {
       if (items === itemName) {
-        const insideBasket = {
+        const newItem = {
           item: itemName,
           quantity: itemQuantity,
           price: fullMenu[items],
         };
-        this.basket.push(insideBasket);
+        this.basket.push(newItem);
+        itemFound = true;
+        break;
       }
+    }
+    if (itemFound === false) {
+      return "Item is not on the menu, chose something else";
     }
   }
 
@@ -44,7 +50,6 @@ class Basket {
   }
 
   priceChecker(itemName) {
-    const fullMenu = MENU.GetMenu();
     for (const items in fullMenu)
       if (itemName === items) {
         return fullMenu[items];

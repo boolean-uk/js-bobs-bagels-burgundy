@@ -29,6 +29,15 @@ describe("Basket", () => {
     expect(bagelInBasket).toEqual(expected);
   });
 
+
+   it("Add items to basket what is NOT on the menu", () => {
+    const expected = "Item is not on the menu, chose something else";
+    basket.addItem("bagel", 1);
+    basket.addItem("brownie", 3);
+    let test = basket.addItem("cheese", 1);
+    expect(test).toEqual(expected);
+  });
+
   //Test 3
   it("Remove bagel from basket", () => {
     const expected = (this.basket = [
@@ -40,8 +49,6 @@ describe("Basket", () => {
     let removeItem = basket.removeItem("bagel");
     expect(removeItem).toEqual(expected);
   });
-
-  //--------------------------------------
 
   //Test 4 
   it("Alert when basket is overflowing", () => {
@@ -61,8 +68,6 @@ describe("Basket", () => {
     let alert = basket.basketCapacity();
     expect(alert).toEqual(expected);
   });
-
-//-------------------------------------
 
   //Test 5
   it("Create basket with larger size", () => {
