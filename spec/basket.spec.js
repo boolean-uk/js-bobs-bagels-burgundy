@@ -1,4 +1,6 @@
 const Basket = require("../src/basket.js");
+const Item = require("../src/item.js");
+
 describe("Basket", () => {
   let basket;
   const smallBasket = 5;
@@ -10,31 +12,32 @@ describe("Basket", () => {
   });
 
   // Test 1
-  it("Get all of the basket", () => {
+  it("Get all basket", () => {
     const expected = [];
     let getBasket = basket.getBasket();
     expect(getBasket).toEqual(expected);
   });
 
-  // Test 1.1 - Test for adding an item that does not exist
-  it("Can't add an item that doesn't exist", () => {
-    const expected = "This item doesn't exist";
+  it("You can't add item that doesn't exist", () => {
+    const expected = "this item does not exist";
+
     let result = basket.addItem("jam", 1);
     let bagelInBasket = basket.getBasket();
-    expect(result).toEqual(expected); // --------------------------------------------
+    expect(result).toEqual(expected);
+    expect(bagelInBasket).toEqual([]);
   });
 
   // Test 2
   it("Add items to basket", () => {
-    const expected = [
-      { item: "bagel", quantity: 1, price: 2.99 },
-      { item: "brownie", quantity: 3, price: 3.99 },
-    ];
+    const newItem1 = new Item("bagel", 1, 2.99);
+    const newItem2 = new Item("brownie", 3, 3.99);
+
+    const expected = [newItem1, newItem2];
 
     basket.addItem("bagel", 1);
     basket.addItem("brownie", 3);
-    let bagelInBasket = basket.getBasket();
-    expect(bagelInBasket).toEqual(expected);
+    let result = basket.getBasket();
+    expect(result).toEqual(expected);
   });
 
   // Test 3
@@ -49,7 +52,6 @@ describe("Basket", () => {
     expect(removeItem).toEqual(expected);
   });
 
-  // Test 4 - Create a test for matching the capacity -------------------------------
   it("Alert when basket is full", () => {
     const expected = "Basket full, Please choose a bigger basket.";
 
@@ -58,7 +60,7 @@ describe("Basket", () => {
     expect(alert).toEqual(expected);
   });
 
-  // Test 4.1 - For when the basket is overflowing --------------------------------------------
+  // Test 4
   it("Alert when basket is overflowing", () => {
     const expected = "Basket full, Please choose a bigger basket.";
 
@@ -72,7 +74,7 @@ describe("Basket", () => {
   it("Create basket with larger size", () => {
     const expected = (this.basketSize = largeBasket);
 
-    new Basket(largeBasket); //
+    new Basket(largeBasket);
     let checkSize = this.basketSize;
     expect(checkSize).toEqual(expected);
   });
@@ -87,7 +89,7 @@ describe("Basket", () => {
     expect(alert).toEqual(expected);
   });
 
-  // Test 7 - test for if the item doesn't exist
+  // Test 7
   it("price checker for items", () => {
     const expected = 3.99;
 
