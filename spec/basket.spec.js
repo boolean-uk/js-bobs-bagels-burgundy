@@ -103,18 +103,34 @@ describe("Basket", () => {
   });
 
   //Test 8
-  // not tooo sure why this one doesn't just go into addItem()
-  // also seems it will add an item x number of times instead of updating quantity. will need to see code for this.
   it("favourite bagel quantity", () => {
     const expected = [
-      { item: "chocolateBagel", quantity: 1, price: 4.99 },
-      { item: "chocolateBagel", quantity: 1, price: 4.99 },
-      { item: "chocolateBagel", quantity: 1, price: 4.99 },
+      {
+        sku: "COF",
+        price: "0.99",
+        name: "Bagel",
+        variant: "",
+        quantity: 1,
+      },
+      {
+        sku: "COF",
+        price: "0.99",
+        name: "Bagel",
+        variant: "",
+        quantity: 1,
+      },
+      {
+        sku: "COF",
+        price: "0.99",
+        name: "Bagel",
+        variant: "",
+        quantity: 1,
+      },
     ];
 
-    basket.addItem("chocolateBagel", 1);
-    basket.addItem("chocolateBagel", 1);
-    basket.addItem("chocolateBagel", 1);
+    basket.addItem("COF", 1);
+    basket.addItem("COF", 1);
+    basket.addItem("COF", 1);
     let alert = basket.getBasket();
     expect(alert).toEqual(expected);
   });
