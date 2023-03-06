@@ -6,21 +6,34 @@ const largeBasket = 15;
 class Basket {
   constructor(capacity = smallBasket) {
     this.basket = [];
-    this.basketSize = capacity;
+    this.basketCapacity = capacity;
   }
+
   getBasket() {
     return this.basket;
   }
-  addItem(itemName, itemQuantity) {
-    const fullMenu = MENU.GetMenu();
-    for (const items in fullMenu) {
-      if (items === itemName) {
-        const insideBasket = {
-          item: itemName,
-          quantity: itemQuantity,
-          price: fullMenu[items],
-        };
-        this.basket.push(insideBasket);
+
+  // {
+  //   sku: "BGLS",
+  //   price: "0.49",
+  //   name: "Bagel",
+  //   variant: "Sesame",
+  // },
+
+  addItem(sku, itemQuantity) {
+    const fullMenu = new MENU();
+ 
+    for (let i = 0; i < fullMenu.inventory.length; i++) {
+      if (sku === fullMenu.inventory[i].sku) {
+      
+      const insideBasket = {
+        sku: fullMenu.inventory[i].sku,
+        price: fullMenu.inventory[i].price,
+        name: fullMenu.inventory[i].name,
+        variant: fullMenu.inventory[i].variant,
+        quantity: itemQuantity,
+      };
+      this.basket.push(insideBasket)
       }
     }
   }
@@ -34,33 +47,36 @@ class Basket {
         return "This item is not in the basket.";
   }
 
-  basketCapacity() {
-    const totalCapacity = this.basket.reduce((total, quantity) => {
-      return total + quantity.quantity;
-    }, 0);
-    if (totalCapacity > this.basketSize) {
-      return "Basket full, Please choose a bigger basket.";
-    }
-  }
+  // basketCapacity() {
+  //   const totalCapacity = this.basket.reduce((total, quantity) => {
+  //     return total + quantity.quantity;
+  //   }, 0);
+  //   if (totalCapacity > this.basketSize) {
+  //     return "Basket full, Please choose a bigger basket.";
+  //   }
+  // }
 
-  priceChecker(itemName) {
-    const fullMenu = MENU.GetMenu();
-    for (const items in fullMenu)
-      if (itemName === items) {
-        return fullMenu[items];
-      }
-  }
+  // priceChecker(itemName) {
+  //   const fullMenu = MENU.GetMenu();
+  //   for (const items in fullMenu)
+  //     if (itemName === items) {
+  //       return fullMenu[items];
+  //     }
+  // }
 
-  basketTotal() {
-    let eachItem = [];
-    for (let i = 0; i < this.basket.length; i++) {
-      eachItem.push(this.basket[i].quantity * this.basket[i].price);
-    }
-    const totalPrice = eachItem.reduce((total, quantity) => {
-      return total + quantity;
-    }, 0);
-    return "£" + totalPrice;
-  }
+  // basketTotal() {
+  //   let eachItem = [];
+  //   for (let i = 0; i < this.basket.length; i++) {
+  //     eachItem.push(this.basket[i].quantity * this.basket[i].price);
+  //   }
+  //   const totalPrice = eachItem.reduce((total, quantity) => {
+  //     return total + quantity;
+  //   }, 0);
+  //   return "£" + totalPrice;
+  // }
 }
 
 module.exports = Basket;
+
+const basket = new Basket(smallBasket);
+basket.addItem("COF", 3);

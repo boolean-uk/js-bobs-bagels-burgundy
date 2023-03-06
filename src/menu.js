@@ -1,11 +1,53 @@
+//the inventory as a Class
 class Menu {
-  static GetMenu() {
-    return {
-      bagel: 2.99,
-      brownie: 3.99,
-      chocolateBagel: 4.99,
-    };
-  }
+  constructor() {
+    this.inventory = [
+      {
+        sku: "BGLO",
+        price: "0.49",
+        name: "Bagel",
+        variant: "Onion",
+      },
+      {
+        sku: "BGLP",
+        price: "0.39",
+        name: "Bagel",
+        variant: "Plain",
+      },
+      {
+        sku: "BGLE",
+        price: "0.49",
+        name: "Bagel",
+        variant: "Everything",
+      },
+      {
+        sku: "BGLS",
+        price: "0.49",
+        name: "Bagel",
+        variant: "Sesame",
+      },
+      {
+        sku: "COF",
+        price: "0.99",
+        name: "Bagel",
+        variant: "",
+      },
+      {
+        sku: "BGSE",
+        price: "2.99",
+        name: "Bagel Sandwich",
+        variant: "Everything",
+        fillings: ["Bacon", "Egg", "Cheese"],
+      },
+      {
+        sku: "BGSS",
+        price: "4.99",
+        name: "Bagel Sandwich",
+        variant: "Sesame",
+        fillings: ["Cream Cheese", "Smoked Salmon"],
+      },
+    ];
+  
 }
-
+}
 module.exports = Menu;

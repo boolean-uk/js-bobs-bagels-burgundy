@@ -15,6 +15,7 @@ actions: add, remove
 
 CLASS: Basket
 basket: []
+basketCapacity
 
 METHOD:
 addItem(sku: string)

@@ -1,4 +1,5 @@
 const Basket = require("../src/basket.js");
+
 describe("Basket", () => {
   let basket;
 // pre-set basket sizes. owner can pick from 3, cant set own sizes
@@ -21,15 +22,27 @@ describe("Basket", () => {
   //Test 2
   it("Add items to basket", () => {
     const expected = [
-      { item: "bagel", quantity: 1, price: 2.99 },
-      { item: "brownie", quantity: 3, price: 3.99 },
+        {
+            sku: "BGLS",
+            price: "0.49",
+            name: "Bagel",
+            variant: "Sesame",
+            quantity: 1,
+          },
+          {
+            sku: "COF",
+            price: "0.99",
+            name: "Bagel",
+            variant: "",
+            quantity: 3,
+          },
     ];
 
-    basket.addItem("bagel", 1);
-    basket.addItem("brownie", 3);
-    // pedantic but if its not all bagels, could call the var something else?
-    let bagelInBasket = basket.getBasket();
-    expect(bagelInBasket).toEqual(expected);
+    basket.addItem("BGLS", 1);
+    basket.addItem("COF", 3);
+
+    let itemsInBasket = basket.getBasket();
+    expect(itemsInBasket).toEqual(expected);
   });
 
   //Test 3
@@ -57,10 +70,10 @@ describe("Basket", () => {
   //Test 5
   //or "create specific basket size" ?
   it("Create basket with larger size", () => {
-    const expected = (this.basketSize = largeBasket);
+    const expected = (this.basketCapacity = largeBasket);
 
     new Basket(largeBasket);
-    let checkSize = this.basketSize;
+    let checkSize = this.basketCapacity;
     expect(checkSize).toEqual(expected);
   });
 
@@ -110,4 +123,4 @@ describe("Basket", () => {
     let total = basket.basketTotal();
     expect(total).toEqual(expected);
   });
-});
+})
