@@ -2,8 +2,8 @@ const Basket = require("../src/basket.js");
 
 describe("Basket", () => {
   let basket;
-// pre-set basket sizes. owner can pick from 3, cant set own sizes
-// will want to see pre-set basket size in the code
+  // pre-set basket sizes. owner can pick from 3, cant set own sizes
+  // will want to see pre-set basket size in the code
   const smallBasket = 5;
   const mediumBasket = 10;
   const largeBasket = 15;
@@ -22,20 +22,20 @@ describe("Basket", () => {
   //Test 2
   it("Add items to basket", () => {
     const expected = [
-        {
-            sku: "BGLS",
-            price: "0.49",
-            name: "Bagel",
-            variant: "Sesame",
-            quantity: 1,
-          },
-          {
-            sku: "COF",
-            price: "0.99",
-            name: "Bagel",
-            variant: "",
-            quantity: 3,
-          },
+      {
+        sku: "BGLS",
+        price: "0.49",
+        name: "Bagel",
+        variant: "Sesame",
+        quantity: 1,
+      },
+      {
+        sku: "COF",
+        price: "0.99",
+        name: "Bagel",
+        variant: "",
+        quantity: 3,
+      },
     ];
 
     basket.addItem("BGLS", 1);
@@ -48,12 +48,18 @@ describe("Basket", () => {
   //Test 3
   it("Remove bagel from basket", () => {
     const expected = (this.basket = [
-      { item: "brownie", quantity: 3, price: 3.99 },
+      {
+        sku: "COF",
+        price: "0.99",
+        name: "Bagel",
+        variant: "",
+        quantity: 3,
+      },
     ]);
 
-    basket.addItem("bagel", 1);
-    basket.addItem("brownie", 3);
-    let removeItem = basket.removeItem("bagel");
+    basket.addItem("BGLS", 1);
+    basket.addItem("COF", 3);
+    let removeItem = basket.removeItem("BGLS");
     expect(removeItem).toEqual(expected);
   });
 
@@ -61,8 +67,8 @@ describe("Basket", () => {
   it("Alert when basket is full", () => {
     const expected = "Basket full, Please choose a bigger basket.";
 
-    basket.addItem("bagel", 3);
-    basket.addItem("brownie", 5);
+    basket.addItem("BGLS", 3);
+    basket.addItem("COF", 5);
     let alert = basket.basketCapacity();
     expect(alert).toEqual(expected);
   });
@@ -81,8 +87,8 @@ describe("Basket", () => {
   it("Alert when trying to remove item that doesnt exist inside basket", () => {
     const expected = "This item is not in the basket.";
 
-    basket.addItem("bagel", 3);
-    basket.addItem("brownie", 5);
+    basket.addItem("BGLS", 4);
+    basket.addItem("COF", 6);
     let alert = basket.removeItem("Kebab", 10);
     expect(alert).toEqual(expected);
   });
@@ -123,4 +129,4 @@ describe("Basket", () => {
     let total = basket.basketTotal();
     expect(total).toEqual(expected);
   });
-})
+});

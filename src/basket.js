@@ -13,67 +13,62 @@ class Basket {
     return this.basket;
   }
 
-  // {
-  //   sku: "BGLS",
-  //   price: "0.49",
-  //   name: "Bagel",
-  //   variant: "Sesame",
-  // },
-
   addItem(sku, itemQuantity) {
     const fullMenu = new MENU();
- 
+
     for (let i = 0; i < fullMenu.inventory.length; i++) {
       if (sku === fullMenu.inventory[i].sku) {
-      
-      const insideBasket = {
-        sku: fullMenu.inventory[i].sku,
-        price: fullMenu.inventory[i].price,
-        name: fullMenu.inventory[i].name,
-        variant: fullMenu.inventory[i].variant,
-        quantity: itemQuantity,
-      };
-      this.basket.push(insideBasket)
+        const insideBasket = {
+          sku: fullMenu.inventory[i].sku,
+          price: fullMenu.inventory[i].price,
+          name: fullMenu.inventory[i].name,
+          variant: fullMenu.inventory[i].variant,
+          quantity: itemQuantity,
+        };
+        this.basket.push(insideBasket);
       }
     }
   }
 
-  removeItem(itemName) {
+  removeItem(sku) {
     for (let i = 0; i < this.basket.length; i++)
-      if (this.basket[i].item === itemName) {
+      if (this.basket[i].sku === sku) {
         this.basket.splice(i, 1);
         return this.basket;
-      } else if (this.basket[i].item !== itemName)
+      } else {
         return "This item is not in the basket.";
+      }
   }
 
-  // basketCapacity() {
-  //   const totalCapacity = this.basket.reduce((total, quantity) => {
-  //     return total + quantity.quantity;
-  //   }, 0);
-  //   if (totalCapacity > this.basketSize) {
-  //     return "Basket full, Please choose a bigger basket.";
-  //   }
-  // }
+  basketCapacity() {
+    //TODO: figure out why basket.basketCapacity() returns error of "not a functon"
+    console.log("hi");
+    const totalCapacity = this.basket.reduce((total, quantity) => {
+      return total + quantity.quantity;
+    }, 0);
+    if (totalCapacity > this.basketCapacity) {
+      return "Basket full, Please choose a bigger basket.";
+    }
+  }
 
-  // priceChecker(itemName) {
-  //   const fullMenu = MENU.GetMenu();
-  //   for (const items in fullMenu)
-  //     if (itemName === items) {
-  //       return fullMenu[items];
-  //     }
-  // }
+  priceChecker(itemName) {
+    const fullMenu = MENU.GetMenu();
+    for (const items in fullMenu)
+      if (itemName === items) {
+        return fullMenu[items];
+      }
+  }
 
-  // basketTotal() {
-  //   let eachItem = [];
-  //   for (let i = 0; i < this.basket.length; i++) {
-  //     eachItem.push(this.basket[i].quantity * this.basket[i].price);
-  //   }
-  //   const totalPrice = eachItem.reduce((total, quantity) => {
-  //     return total + quantity;
-  //   }, 0);
-  //   return "£" + totalPrice;
-  // }
+  basketTotal() {
+    let eachItem = [];
+    for (let i = 0; i < this.basket.length; i++) {
+      eachItem.push(this.basket[i].quantity * this.basket[i].price);
+    }
+    const totalPrice = eachItem.reduce((total, quantity) => {
+      return total + quantity;
+    }, 0);
+    return "£" + totalPrice;
+  }
 }
 
 module.exports = Basket;
