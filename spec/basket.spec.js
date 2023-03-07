@@ -36,10 +36,18 @@ describe("Basket", () => {
         variant: "",
         quantity: 3,
       },
+      {
+        sku: "BGLS",
+        price: "0.49",
+        name: "Bagel",
+        variant: "Sesame",
+        quantity: 1,
+      }
     ];
 
     basket.addItem("BGLS", 1);
     basket.addItem("COF", 3);
+    basket.addItem("BGLS", 1);
 
     let itemsInBasket = basket.getBasket();
     expect(itemsInBasket).toEqual(expected);
@@ -95,53 +103,20 @@ describe("Basket", () => {
 
   //Test 7
   it("price checker for items", () => {
-    const expected = 3.99;
+    const expected = 0.99;
 
-    basket.priceChecker("brownie");
-    let checkPrice = basket.priceChecker("brownie");
+    basket.priceChecker("COF");
+    let checkPrice = basket.priceChecker("COF");
     expect(checkPrice).toEqual(expected);
   });
 
   //Test 8
-  it("favourite bagel quantity", () => {
-    const expected = [
-      {
-        sku: "COF",
-        price: "0.99",
-        name: "Bagel",
-        variant: "",
-        quantity: 1,
-      },
-      {
-        sku: "COF",
-        price: "0.99",
-        name: "Bagel",
-        variant: "",
-        quantity: 1,
-      },
-      {
-        sku: "COF",
-        price: "0.99",
-        name: "Bagel",
-        variant: "",
-        quantity: 1,
-      },
-    ];
-
-    basket.addItem("COF", 1);
-    basket.addItem("COF", 1);
-    basket.addItem("COF", 1);
-    let alert = basket.getBasket();
-    expect(alert).toEqual(expected);
-  });
-
-  //Test 9
   it("basket total", () => {
-    const expected = "£29.93";
+    const expected = "£13.94";
 
-    basket.addItem("chocolateBagel", 3);
-    basket.addItem("bagel", 1);
-    basket.addItem("brownie", 3);
+    basket.addItem("BGSE", 2);
+    basket.addItem("BGSS", 1);
+    basket.addItem("COF", 3);
     let total = basket.basketTotal();
     expect(total).toEqual(expected);
   });

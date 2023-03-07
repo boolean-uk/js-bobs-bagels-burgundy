@@ -19,11 +19,11 @@ basketCapacity
 
 METHOD:
 addItem(sku: string)
-INPUT = sku to add
-OUTPUT = basket [item]
+        INPUT = sku to add
+        OUTPUT = basket [item]
 removeItem(sku: string)
-INPUT = sku to remove
-OUTPUT= basket[] - item that has been removed
+        INPUT = sku to remove
+        OUTPUT= basket[] - item that has been removed
 
 Final OUTPUT: Basket: []
 

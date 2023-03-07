@@ -6,7 +6,7 @@ const largeBasket = 15;
 class Basket {
   constructor(capacity = smallBasket) {
     this.basket = [];
-    this.basketCapacity = capacity;
+    this.basketSize = capacity;
   }
 
   getBasket() {
@@ -41,22 +41,22 @@ class Basket {
   }
 
   basketCapacity() {
-    //TODO: figure out why basket.basketCapacity() returns error of "not a functon"
-    console.log("hi");
     const totalCapacity = this.basket.reduce((total, quantity) => {
       return total + quantity.quantity;
     }, 0);
-    if (totalCapacity > this.basketCapacity) {
+    if (totalCapacity > this.basketSize) {
       return "Basket full, Please choose a bigger basket.";
     }
   }
 
   priceChecker(itemName) {
-    const fullMenu = MENU.GetMenu();
-    for (const items in fullMenu)
-      if (itemName === items) {
-        return fullMenu[items];
+    const fullMenu = new MENU();
+
+    for (let i = 0; i < fullMenu.inventory.length; i++) {
+      if (itemName === fullMenu.inventory[i].sku) {
+        return Number(fullMenu.inventory[i].price);
       }
+    }
   }
 
   basketTotal() {
@@ -67,11 +67,8 @@ class Basket {
     const totalPrice = eachItem.reduce((total, quantity) => {
       return total + quantity;
     }, 0);
-    return "£" + totalPrice;
+    return "£" + totalPrice.toFixed(2);
   }
 }
 
 module.exports = Basket;
-
-const basket = new Basket(smallBasket);
-basket.addItem("COF", 3);
