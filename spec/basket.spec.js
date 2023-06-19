@@ -2,13 +2,13 @@ const Basket = require("../src/basket.js");
 
 describe("Basket", () => {
   let basket;
-  const smallBasket = 5;
-  const mediumBasket = 10;
+  let basketLarge;
   const largeBasket = 15;
 
   // refreshes the classes before each test is run
   beforeEach(() => {
     basket = new Basket();
+    basketLarge = new Basket(largeBasket)
   });
 
   //Test 1
@@ -37,6 +37,7 @@ describe("Basket", () => {
   });
 
   //Test 3
+  // Happy Path
   it("Remove bagel from basket", () => {
     // set up
     const expected = (this.basket = [
@@ -52,19 +53,25 @@ describe("Basket", () => {
     expect(removeItem).toEqual(expected);
   });
 
+  // Unahppy Path
+
+
   //Test 4
   it("Alert when basket is full", () => {
     // set up
     const expected = "Basket full, Please choose a bigger basket.";
 
     // execute
-    basket.addItem("bagel", 3);
-    basket.addItem("brownie", 5);
-    let alert = basket.basketCapacity();
+    basketLarge.addItem("bagel", 3);
+    let alert = basketLarge.addItem("brownie", 16);
+   
 
     // verify
     expect(alert).toEqual(expected);
   });
+
+  // Test for basketSize()
+ // Return totalCapacity
 
   //Test 5
   it("Create basket with larger size", () => {
