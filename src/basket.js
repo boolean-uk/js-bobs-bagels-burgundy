@@ -51,7 +51,6 @@ class Basket {
     return totalCapacity
   }
 
-  
 
   priceChecker(itemName) {
     const fullMenu = MENU.GetMenu();
@@ -72,9 +71,6 @@ class Basket {
     return "£" + totalPrice;
   }
 }
-// const basket = new Basket()
-// basket.addItem('bagel', 1)
-// console.log(basket.addItem('brownie', 100))
-// console.log(basket.basket)
+
 
 module.exports = Basket;

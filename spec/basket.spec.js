@@ -130,12 +130,17 @@ describe("Basket", () => {
 
   //Test 6
   it("price checker for items", () => {
+    // set up
     const expected = 3.99;
 
+    // execute
     basket.priceChecker("brownie");
     let checkPrice = basket.priceChecker("brownie");
+
+    // verify
     expect(checkPrice).toEqual(expected);
   });
+
 
   //Test 7
   it("favourite bagel quantity", () => {
@@ -153,13 +158,17 @@ describe("Basket", () => {
   });
 
   //Test 8
-  xit("basket total", () => {
-    const expected = "£29.93";
+  it("basket total", () => {
+    // set up
+    const expected = "£17.96";
 
+    // execute
     basket.addItem("chocolateBagel", 3);
     basket.addItem("bagel", 1);
     basket.addItem("brownie", 3);
     let total = basket.basketTotal();
+
+    // verify
     expect(total).toEqual(expected);
   });
 });
