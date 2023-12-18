@@ -66,6 +66,15 @@ describe('Basket', () => {
     expect(checkSize).toEqual(expected) // Asserting the size of the new basket
   })
 
+  // Test 5.1: create a basket with a medium size and check if size is set correctly
+  it('Create basket with larger size', () => {
+    const expected = mediumBasket // Expected basket size
+
+    const mediumBasketInstance = new Basket(mediumBasket)
+    const checkSize = mediumBasketInstance.basketSize // Retrieving the size of the new basket
+    expect(checkSize).toEqual(expected) // Asserting the size of the new basket
+  })
+
   // Test 6: Check if the correct alert is returned when trying to remove an item that's not in the basket
   it('Alert when trying to remove item that doesnt exist inside basket', () => {
     const expected = 'This item is not in the basket.'
