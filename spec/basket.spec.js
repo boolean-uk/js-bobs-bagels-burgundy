@@ -1,5 +1,7 @@
 // Importing the Basket class from the relative path
 const Basket = require('../src/basket.js')
+// importing the inventory
+const inventory = require('../inventory.json')
 
 // Describe block defines a test suite for the Basket class
 describe('Basket', () => {

@@ -1,19 +1,24 @@
+// Importing the menu module
 const MENU = require('./menu.js')
 
+// Defining constants for basket sizes
 const smallBasket = 5
 const mediumBasket = 10
 const largeBasket = 15
 
 class Basket {
+  // Constructor to initialize the basket with a default capacity
   constructor(capacity = 5) {
-    this.basket = []
-    this.basketSize = capacity
+    this.basket = [] // Array to hold basket items
+    this.basketSize = capacity // Capacity of the basket
   }
 
+  // Getter method to retrieve the basket items
   getBasket() {
     return this.basket
   }
 
+  // Setter method to set the basket size with validation
   setBasketSize(size) {
     if ([smallBasket, mediumBasket, largeBasket].includes(size)) {
       this.basketSize = size
@@ -22,6 +27,7 @@ class Basket {
     }
   }
 
+  // Method to add an item to the basket, with checks for basket capacity and menu availability
   addItem(itemName, itemQuantity) {
     if (this.basket.length >= this.basketSize) {
       throw new Error('Basket is full')
@@ -41,15 +47,19 @@ class Basket {
     }
   }
 
+  // Method to remove an item from the basket
   removeItem(itemName) {
-    for (let i = 0; i < this.basket.length; i++)
+    for (let i = 0; i < this.basket.length; i++) {
       if (this.basket[i].item === itemName) {
         this.basket.splice(i, 1)
         return this.basket
-      } else if (this.basket[i].item !== itemName)
+      } else if (this.basket[i].item !== itemName) {
         return 'This item is not in the basket.'
+      }
+    }
   }
 
+  // Method to check the basket capacity against the items added
   basketCapacity() {
     const totalCapacity = this.basket.reduce((total, quantity) => {
       return total + quantity.quantity
@@ -59,14 +69,17 @@ class Basket {
     }
   }
 
+  // Method to check the price of an item
   priceChecker(itemName) {
     const fullMenu = MENU.GetMenu()
-    for (const items in fullMenu)
+    for (const items in fullMenu) {
       if (itemName === items) {
         return fullMenu[items]
       }
+    }
   }
 
+  // Method to calculate the total price of items in the basket
   basketTotal() {
     const eachItem = []
     for (let i = 0; i < this.basket.length; i++) {
@@ -79,4 +92,5 @@ class Basket {
   }
 }
 
+// Exporting the Basket class
 module.exports = Basket
