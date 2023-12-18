@@ -81,7 +81,14 @@ describe('Basket', () => {
     expect(checkSize).toEqual(expected) // Asserting the size of the new basket
   })
 
-  // Test 5.3: create a basket with a small size and check if size is set correctly
+  // Test 5.3 Changing basket size (medium)
+
+  it('Basket capacity changing', () => {
+    const mediumBasketInstance = new Basket(mediumBasket)
+    expect(mediumBasketInstance.basketSize).toBe(10)
+  })
+
+  // Test 5.4: create a basket with a small size and check if size is set correctly
   it('Create basket with small size', () => {
     const expected = smallBasket // Expected basket size
 
