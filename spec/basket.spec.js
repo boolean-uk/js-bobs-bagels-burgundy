@@ -1,5 +1,6 @@
 // Importing the Basket class from the relative path
 const Basket = require('../src/basket.js')
+// importing the inventory
 
 // Describe block defines a test suite for the Basket class
 describe('Basket', () => {
@@ -66,7 +67,7 @@ describe('Basket', () => {
     expect(checkSize).toEqual(expected) // Asserting the size of the new basket
   })
 
-  // Test 5.1: changing basket size (large)
+  // Test 5.1: changing basket size(large)
   it('Basket capacity changing', () => {
     const largeBasketInstance = new Basket(largeBasket)
     expect(largeBasketInstance.basketSize).toBe(15)
@@ -81,29 +82,25 @@ describe('Basket', () => {
     expect(checkSize).toEqual(expected) // Asserting the size of the new basket
   })
 
-
-  // Test 5.3 Changing basket size (small)
-
-  it('Basket capacity changing', () => {
-    const smallBasketInstance = new Basket(smallBasket)
-    expect (smallBasketInstance.basketSize).toBe(5)
-  })
-
-  // Test 5.4 Changing basket size (medium)
-
+  // Test 5.3: changing basket size(medium)
   it('Basket capacity changing', () => {
     const mediumBasketInstance = new Basket(mediumBasket)
     expect(mediumBasketInstance.basketSize).toBe(10)
   })
 
-  
-  // Test 5.5: create a basket with a small size and check if size is set correctly
+  // Test 5.4: create a basket with a small size and check if size is set correctly
   it('Create basket with small size', () => {
     const expected = smallBasket // Expected basket size
 
     const smallBasketInstance = new Basket(smallBasket)
     const checkSize = smallBasketInstance.basketSize // Retrieving the size of the new basket
     expect(checkSize).toEqual(expected) // Asserting the size of the new basket
+  })
+
+  // Test 5.5: changing basket size(small)
+  it('Basket changing capacity', () => {
+    const smallBasketInstance = new Basket(smallBasket)
+    expect(smallBasketInstance.basketSize).toBe(5)
   })
 
   // Test 6: Check if the correct alert is returned when trying to remove an item that's not in the basket
@@ -142,7 +139,7 @@ describe('Basket', () => {
 
   // Test 9: Calculate and check the total price of items in the basket
   it('basket total', () => {
-    const expected = '£29.93' // Expected total price
+    const expected = 'Â£29.93' // Expected total price
 
     // Adding items to the basket
     basket.addItem('chocolateBagel', 3)
