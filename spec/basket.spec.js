@@ -1,7 +1,6 @@
 // Importing the Basket class from the relative path
 const Basket = require('../src/basket.js')
 // importing the inventory
-const inventory = require('../inventory.json')
 
 // Describe block defines a test suite for the Basket class
 describe('Basket', () => {
@@ -118,6 +117,7 @@ describe('Basket', () => {
   it('price checker for items', () => {
     const expected = 3.99 // Expected price of the brownie
 
+    basket.priceChecker('brownie')
     const checkPrice = basket.priceChecker('brownie') // Checking the price of brownie
     expect(checkPrice).toEqual(expected) // Asserting the received price matches the expected price
   })
