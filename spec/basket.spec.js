@@ -1,105 +1,116 @@
-const Basket = require("../src/basket.js")
+// Importing the Basket class from the relative path
+const Basket = require("../src/basket.js");
+
+// Describe block defines a test suite for the Basket class
 describe("Basket", () => {
-    let basket
-    const smallBasket = 5;
-    const mediumBasket = 10;
-    const largeBasket = 15;
+  // Variables to store basket instances and different basket sizes
+  let basket;
+  const smallBasket = 5;
+  const mediumBasket = 10;
+  const largeBasket = 15;
 
-    beforeEach(() => {
-        basket = new Basket();
-    });
+  // beforeEach is a Jest hook that runs before each test in this suite
+  // It's used here to initialize a new Basket instance before every test
+  beforeEach(() => {
+    basket = new Basket();
+  });
 
-    //Test 1
-    it("Get all basket", () => {
-        const expected = []
-        let getBasket = basket.getBasket()
-        expect(getBasket).toEqual(expected)
-    })
+  // Test 1: Check if the basket is initially empty
+  it("Get all basket", () => {
+    const expected = []; // Expected result (empty array)
+    const getBasket = basket.getBasket(); // Method call to get basket contents
+    expect(getBasket).toEqual(expected); // Assertion to check if the basket is empty
+  });
 
-    //Test 2
-    it("Add items to basket", () => {
-        const expected = [
-            { item: "bagel", quantity: 1, price: 2.99 },
-            { item: "brownie", quantity: 3, price: 3.99 }]
+  // Test 2: Add items to the basket and check if they are added correctly
+  it("Add items to basket", () => {
+    const expected = [
+      { item: "bagel", quantity: 1, price: 2.99 },
+      { item: "brownie", quantity: 3, price: 3.99 },
+    ];
 
-        basket.addItem("bagel", 1)
-        basket.addItem("brownie", 3)
-        let bagelInBasket = basket.getBasket()
-        expect(bagelInBasket).toEqual(expected)
-    })
+    basket.addItem("bagel", 1); // Adding a bagel to the basket
+    basket.addItem("brownie", 3); // Adding brownies to the basket
+    const bagelInBasket = basket.getBasket(); // Retrieving basket contents
+    expect(bagelInBasket).toEqual(expected); // Asserting the basket contents match the expected result
+  });
 
-    //Test 3
-    it("Remove bagel from basket", () => {
-        const expected = this.basket = [
-            { item: "brownie", quantity: 3, price: 3.99 }]
+  // Test 3: Remove an item from the basket and check if it's removed correctly
+  it("Remove bagel from basket", () => {
+    const expected = [
+      { item: "brownie", quantity: 3, price: 3.99 },
+    ];
 
-        basket.addItem("bagel", 1)
-        basket.addItem("brownie", 3)
-        let removeItem = basket.removeItem("bagel")
-        expect(removeItem).toEqual(expected)
-    })
+    basket.addItem("bagel", 1);
+    basket.addItem("brownie", 3);
+    basket.removeItem("bagel"); // Removing bagel from the basket
+    const currentBasket = basket.getBasket();
+    expect(currentBasket).toEqual(expected); // Asserting the current basket matches the expected result
+  });
 
-    //Test 4
-    it("Alert when basket is full", () => {
-        const expected =
+  // Test 4: Check if an alert is returned when the basket reaches its capacity
+  it("Alert when basket is full", () => {
+    const expected = "Basket full, Please choose a bigger basket.";
 
-            "Basket full, Please choose a bigger basket."
+    // Adding items to exceed the basket's default capacity
+    basket.addItem("bagel", 3);
+    basket.addItem("brownie", 5);
+    const alert = basket.basketCapacity(); // Checking basket capacity
+    expect(alert).toEqual(expected); // Asserting the received alert matches the expected message
+  });
 
-        basket.addItem("bagel", 3)
-        basket.addItem("brownie", 5)
-        let alert = basket.basketCapacity()
-        expect(alert).toEqual(expected)
-    })
+  // Test 5: Create a basket with a larger size and check if size is set correctly
+  it("Create basket with larger size", () => {
+    const expected = largeBasket; // Expected basket size
 
-    //Test 5
-    it("Create basket with larger size", () => {
-        const expected = this.basketSize = largeBasket
+    const largeBasketInstance = new Basket(largeBasket);
+    const checkSize = largeBasketInstance.basketSize; // Retrieving the size of the new basket
+    expect(checkSize).toEqual(expected); // Asserting the size of the new basket
+  });
 
-        new Basket(largeBasket)
-        let checkSize = this.basketSize
-        expect(checkSize).toEqual(expected)
-    })
+  // Test 6: Check if the correct alert is returned when trying to remove an item that's not in the basket
+  it("Alert when trying to remove item that doesnt exist inside basket", () => {
+    const expected = "This item is not in the basket.";
 
-    //Test 6
-    it("Alert when trying to remove item that doesnt exist inside basket", () => {
-        const expected = "This item is not in the basket."
+    basket.addItem("bagel", 3);
+    basket.addItem("brownie", 5);
+    const alert = basket.removeItem("Kebab"); // Attempting to remove an item not in the basket
+    expect(alert).toEqual(expected); // Asserting the received alert matches the expected message
+  });
 
-        basket.addItem("bagel", 3)
-        basket.addItem("brownie", 5)
-        let alert = basket.removeItem("Kebab", 10)
-        expect(alert).toEqual(expected)
-    })
+  // Test 7: Check the price of a specific item in the basket
+  it("price checker for items", () => {
+    const expected = 3.99; // Expected price of the brownie
 
-    //Test 7 
-    it("price checker for items", () => {
-        const expected = 3.99
+    const checkPrice = basket.priceChecker("brownie"); // Checking the price of brownie
+    expect(checkPrice).toEqual(expected); // Asserting the received price matches the expected price
+  });
 
-        basket.priceChecker("brownie")
-        let checkPrice = basket.priceChecker("brownie")
-        expect(checkPrice).toEqual(expected)
-    })
+  // Test 8: Add multiple units of the same item and check if they're added correctly
+  it("favourite bagel quantity", () => {
+    const expected = [
+      { item: "chocolateBagel", quantity: 1, price: 4.99 },
+      { item: "chocolateBagel", quantity: 1, price: 4.99 },
+      { item: "chocolateBagel", quantity: 1, price: 4.99 },
+    ];
 
-    //Test 8
-    it("favourite bagel quantity", () => {
-        const expected = [{ item: "chocolateBagel", quantity: 1, price: 4.99 },
-        { item: "chocolateBagel", quantity: 1, price: 4.99 },
-        { item: "chocolateBagel", quantity: 1, price: 4.99 }]
+    // Adding chocolate bagels to the basket
+    basket.addItem("chocolateBagel", 1);
+    basket.addItem("chocolateBagel", 1);
+    basket.addItem("chocolateBagel", 1);
+    const currentBasket = basket.getBasket();
+    expect(currentBasket).toEqual(expected); // Asserting the current basket matches the expected result
+  });
 
-        basket.addItem("chocolateBagel", 1)
-        basket.addItem("chocolateBagel", 1)
-        basket.addItem("chocolateBagel", 1)
-        let alert = basket.getBasket()
-        expect(alert).toEqual(expected)
-    })
+  // Test 9: Calculate and check the total price of items in the basket
+  it("basket total", () => {
+    const expected = "Â£29.93"; // Expected total price
 
-    //Test 9
-    it("basket total", () => {
-        const expected = "£29.93"
-
-        basket.addItem("chocolateBagel", 3)
-        basket.addItem("bagel", 1)
-        basket.addItem("brownie", 3)
-        let total = basket.basketTotal()
-        expect(total).toEqual(expected)
-    })
-})
+    // Adding items to the basket
+    basket.addItem("chocolateBagel", 3);
+    basket.addItem("bagel", 1);
+    basket.addItem("brownie", 3);
+    const total = basket.basketTotal(); // Calculating the total price of the basket
+    expect(total).toEqual(expected); // Asserting the total price matches the expected price
+  });
+});
