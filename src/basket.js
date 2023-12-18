@@ -14,7 +14,19 @@ class Basket {
     return this.basket
   }
 
+  setBasketSize(size) {
+    if ([smallBasket, mediumBasket, largeBasket].includes(size)) {
+      this.basketSize = size
+    } else {
+      throw new Error('Invalid basket size')
+    }
+  }
+
   addItem(itemName, itemQuantity) {
+    if (this.basket.length >= this.basketSize) {
+      throw new Error('Basket is full')
+    }
+
     const fullMenu = MENU.GetMenu()
     for (const items in fullMenu) {
       if (items === itemName) {
@@ -24,6 +36,7 @@ class Basket {
           price: fullMenu[items]
         }
         this.basket.push(insideBasket)
+        break // Stop the loop once the item is found and added
       }
     }
   }
@@ -55,7 +68,7 @@ class Basket {
   }
 
   basketTotal() {
-    let eachItem = []
+    const eachItem = []
     for (let i = 0; i < this.basket.length; i++) {
       eachItem.push(this.basket[i].quantity * this.basket[i].price)
     }
