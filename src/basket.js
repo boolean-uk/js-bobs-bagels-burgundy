@@ -1,13 +1,15 @@
 const MENU = require('./menu.js')
+
 const smallBasket = 5
 const mediumBasket = 10
 const largeBasket = 15
 
 class Basket {
-  constructor(capacity = smallBasket) {
+  constructor(capacity = 5) {
     this.basket = []
     this.basketSize = capacity
   }
+
   getBasket() {
     return this.basket
   }
