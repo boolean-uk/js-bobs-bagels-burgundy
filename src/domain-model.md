@@ -88,6 +88,14 @@ Verbs
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | -----
 | Checkout(item ) |  item(@item) | @item:sku@string ,price@string,name@string, variant@string| Total sum | returns expected number
+# Part 3
+As a member of the public,
+So that I can know how much my bagels are,
+I’d like to see the price of each item before I add it to my basket.
 
+As a member of the public,
+So that I can prepare to pay
+When I go to checkout I'd like to know the total sum of the bagels in my basket
+```
 
 
