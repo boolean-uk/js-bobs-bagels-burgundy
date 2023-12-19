@@ -31,5 +31,5 @@ Retrieving the basket contents
 Removing an item from the basket
 Checking the updated basket contents
 const updatedBasket = basket.getBasket();
-console.log("Updated Basket:", updatedBasket);
+console.log("Updated Basket:", updatedBasket);bas
 Additional functionality (if implemented)

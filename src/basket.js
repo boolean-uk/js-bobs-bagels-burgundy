@@ -64,13 +64,15 @@ class Basket {
 module.exports = Basket */
 
 class Basket {
-    constructor() {
-        this.basket = [];
-        this.menu = Menu.getMenu();
+    constructor(capacity = 5) {
+        this.basket = []
+        this.menu = Menu.getMenu()
+        this.basketSize = capacity
+
     }
 
 
-    addItem(itemSku, quantity) {
+    /*addItem(itemSku, quantity) {
         const price = this.menu[itemSku]
         if (price) {
             const newItem = {
@@ -82,20 +84,38 @@ class Basket {
         } else {
             throw new Error("Item not found in the menu.")
         }
+    }*/
+    addItem(itemSku, quantity) {
+        const price = this.menu[itemSku]
+        if (!price) {
+            throw new Error("Item not found in the menu.")
+        }
+        if (this.basket.length + quantity > this.basketSize) {
+            throw new Error("Basket full, Please choose a bigger basket.")
+        }
+        const newItem = {
+            sku: itemSku,
+            quantity: quantity,
+            price: price,
+        }
+        this.basket.push(newItem)
     }
 
     removeItem(itemSku) {
         const index = this.basket.findIndex(item => item.sku === itemSku)
-        if (index !== -1) {
-            this.basket.splice(index, 1)
-        } else {
+        if (index === -1) {
             throw new Error("Item not found in the basket.")
         }
+        this.basket.splice(index, 1)
     }
-
     getBasket() {
         return this.basket
+    }
+    getBasketSize() {
+        return this.basketSize
     }
 }
 
 module.exports = Basket
+
+
