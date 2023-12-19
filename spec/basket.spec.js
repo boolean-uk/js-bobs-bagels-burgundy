@@ -107,14 +107,14 @@ describe("Basket", () => {
         expect(total).toEqual(expected)
     })
 })*/
-describe("Basket", () => {
+describe("Basket", () => {  
     let basket
 
     beforeEach(() => {
-        basket = new Basket()
+        basket = new Basket() // no change until here
     })
    //Test 1
-   /*
+   /* part one
     it("should add an item to the basket", () => {
         basket.addItem("BGLO", 2)
         const expectedBasket = [
@@ -122,19 +122,32 @@ describe("Basket", () => {
         ]
         expect(basket.getBasket()).toEqual(expectedBasket)
     })
-   */
+    part two 
     it("should throw an error when removing an item not in the basket", () => {
         expect(() => basket.removeItem("nonexistentSku")).toThrow(new Error("Item not found in the basket."))
+    }) */
+    //part three 
+    it("should display the price of each item before adding it to the basket", () => {
+        const itemInfo = basket.displayItemPrice("BGLO")
+        expect(itemInfo).toBe("Item: Bagel - Onion, Price: £0.49")
     })
     //Test 2
-    /*
+    /* part one
     it("should remove an item from the basket", () => {
         basket.addItem("BGLO", 2)
         basket.removeItem("BGLO")
         expect(basket.getBasket()).toEqual([])
-    }); */
+    }); 
+    part two
     it("should throw an error when adding an item not in the menu", () => {
         expect(() => basket.addItem("nonexistentSku", 1)).toThrow(new Error("Item not found in the menu."))
+    })*/
+    //part three 
+    it("should calculate the total sum of the bagels in the basket", () => {
+        basket.addItem("BGLO", 2)
+        basket.addItem("BGLP", 1)
+        const total = basket.calculateTotal()
+        expect(total).toBe("1.37"); // Assuming the default prices in menu.js
     })
     //Test 3
     /*
