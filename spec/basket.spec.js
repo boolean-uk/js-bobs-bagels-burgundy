@@ -1,4 +1,8 @@
 const Basket = require("../src/basket.js")
+//adding menu and inventory const
+const Menu = require("../src/menu.js")
+const Inventory = require("../src/inventory.js")
+
 describe("Basket", () => {
     let basket
     const smallBasket = 5;

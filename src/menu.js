@@ -41,39 +41,3 @@ const Inventory = {
 
 module.exports = Inventory;
 
-// basket.js
-class Basket {
-    constructor() {
-        this.basket = [];
-        this.menu = Menu.getMenu();
-    }
-
-    addItem(itemSku, quantity) {
-        const price = this.menu[itemSku];
-        if (price) {
-            const newItem = {
-                sku: itemSku,
-                quantity: quantity,
-                price: price,
-            };
-            this.basket.push(newItem);
-        } else {
-            throw new Error("Item not found in the menu.");
-        }
-    }
-
-    removeItem(itemSku) {
-        const index = this.basket.findIndex(item => item.sku === itemSku);
-        if (index !== -1) {
-            this.basket.splice(index, 1);
-        } else {
-            throw new Error("Item not found in the basket.");
-        }
-    }
-
-    getBasket() {
-        return this.basket;
-    }
-}
-
-module.exports = Basket;
