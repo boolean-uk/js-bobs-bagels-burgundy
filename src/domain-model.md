@@ -9,7 +9,8 @@ Verbs
 -Add an item
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | -----
-| additemtoBasket(item ) |  item(@item) | @item:sku@string ,price@string,name@string, variant@string| Add a valid item | returns true
+| additemtoBasket(item ) |  item(@item) | @item:bagel@number,
+brownie@number,chocolateBagel@number| Add a valid item | returns true
 
 # remove an item  from the basket
 Nouns
@@ -21,7 +22,8 @@ Verbs
 -Remove an item
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | -----
-| removeitemfromBasket(item ) |  item(@item) | @item:sku@string ,price@string,name@string, variant@string| remove a valid item | returns true
+| removeitemfromBasket(item ) |  item(@item) | @item:bagel@number,
+brownie@number,chocolateBagel@number| remove a valid item | returns true
 
 # not overfill my basket
 Noun
@@ -33,7 +35,8 @@ Verbs
 -Add an item
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | -----
-| notOverfillbasket(item ) |  item(@item) | @item:sku@string ,price@string,name@string, variant@string| overfill basket | returns expected
+| notOverfillbasket(item ) |  item(@item) | @item:bagel@number,
+brownie@number,chocolateBagel@number| overfill basket | returns expected
 
 # create baskets with larger capacity
 Noun
@@ -46,7 +49,8 @@ Verbs
 -create
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | -----
-| basketwithlargercapacity(item ) |  item(@item) | @item:sku@string ,price@string,name@string, variant@string| largerCapacity | returns true
+| basketwithlargercapacity(item ) |  item(@item) | @item:bagel@number,
+brownie@number,chocolateBagel@number| largerCapacity | returns true
 
 # remove an item that doesn't exist in my basket. 
 Noun
@@ -59,7 +63,8 @@ Verbs
 -remove an item that doesn't exist in my basket
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | -----
-| itemnotexisting(item ) |  item(@item) | @item:sku@string ,price@string,name@string, variant@string| notExisting | returns true
+| itemnotexisting(item ) |  item(@item) | @item:bagel@number,
+brownie@number,chocolateBagel@number| notExisting | returns number
 
 # see the price of each item before I add it to my basket
 Noun
@@ -73,7 +78,8 @@ Verbs
 -see the price
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | -----
-| price(item ) |  item(@item) | @item:sku@string ,price@string,name@string, variant@string| price | returns number
+| price(item ) |  item(@item) | @item:bagel@number,
+brownie@number,chocolateBagel@number| price | returns number
 
 # The total sum of the bagels in my basket
 Noun
@@ -87,15 +93,5 @@ Verbs
 -Checkout/Total sum
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | -----
-| Checkout(item ) |  item(@item) | @item:sku@string ,price@string,name@string, variant@string| Total sum | returns expected number
-# Part 3
-As a member of the public,
-So that I can know how much my bagels are,
-I’d like to see the price of each item before I add it to my basket.
-
-As a member of the public,
-So that I can prepare to pay
-When I go to checkout I'd like to know the total sum of the bagels in my basket
-```
-
-
+| Checkout(item ) |  item(@item) | @item:bagel@number,
+brownie@number,chocolateBagel@number| Total sum | returns expected number
