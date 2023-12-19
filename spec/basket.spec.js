@@ -10,6 +10,12 @@ describe('Basket', () => {
   const mediumBasket = 10
   const largeBasket = 15
 
+  // beforeEach is a Jest hook that runs before each test in this suite
+  // It's used here to initialize a new Basket instance before every test
+  beforeEach(() => {
+    basket = new Basket()
+  })
+
   // Describe block that has features that add and remove from basket
   describe('Adding and removing from the Basket', () => {
     // Test 1: Add items to the basket and check if they are added correctly
@@ -51,12 +57,6 @@ describe('Basket', () => {
       const currentBasket = basket.getBasket()
       expect(currentBasket).toEqual(expected) // Asserting the current basket matches the expected result
     })
-  })
-
-  // beforeEach is a Jest hook that runs before each test in this suite
-  // It's used here to initialize a new Basket instance before every test
-  beforeEach(() => {
-    basket = new Basket()
   })
 
   // Describe block that has all the basket capacity features
