@@ -33,3 +33,12 @@ Checking the updated basket contents
 const updatedBasket = basket.getBasket();
 console.log("Updated Basket:", updatedBasket);bas
 Additional functionality (if implemented)
+ ### for part two domain model
+Menu Object: No changes
+2. Basket Object:
+Attributes added
+basketSize: Maximum capacity of the basket.
+Methods:
+addItem(itemSku, quantity): Adds an item to the basket with the specified SKU and quantity. Checks if the basket is full before adding.
+removeItem(itemSku): Removes an item from the basket based on its SKU. Checks if the item exists in the basket before removal.
+getBasketSize(): Retrieves the maximum capacity of the basket.

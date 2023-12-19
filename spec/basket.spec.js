@@ -152,6 +152,6 @@ describe("Basket", () => {
     })*/
     it("should retrieve the correct basket size", () => {
         const basketSize = basket.getBasketSize()
-        expect(basketSize).toBe(5);// Assuming the default basket size is 5
+        expect(basketSize).toBe(5)// Assuming the default basket size is 5
     })
 })
