@@ -42,3 +42,55 @@ Methods:
 addItem(itemSku, quantity): Adds an item to the basket with the specified SKU and quantity. Checks if the basket is full before adding.
 removeItem(itemSku): Removes an item from the basket based on its SKU. Checks if the item exists in the basket before removal.
 getBasketSize(): Retrieves the maximum capacity of the basket.
+
+### here is for part three the domain model and general domain model 
+1.  Objects: 
+   -  Menu: 
+ - Properties:
+   - `menuItems`: A collection of menu items, each with a SKU, name, and price.
+ - Methods:
+   - `getMenu()`: Retrieves the menu items.
+
+   -  Basket: 
+ - Properties:
+   - `basketItems`: A collection of items in the basket, each with a SKU, name, quantity, and price.
+   - `menu`: An instance of the Menu object to access menu information.
+   - `basketSize`: The capacity of the basket.
+ - Methods:
+   - `displayItemPrice(itemSku)`: Displays the price of a specific item.
+   - `addItem(itemSku, quantity)`: Adds an item to the basket.
+   - `calculateTotal()`: Calculates the total sum of items in the basket.
+   - `getBasket()`: Retrieves the items in the basket.
+   - `getBasketSize()`: Retrieves the capacity of the basket.
+
+2.  Messages: 
+   -  User Messages: 
+ - `displayItemPrice(itemSku)`: Display the price of a specific item before adding it to the basket.
+ - `addItem(itemSku, quantity)`: Add an item to the basket, checking the capacity of the basket.
+ - `calculateTotal()`: Calculate the total sum of items in the basket.
+
+   -  Error Messages: 
+ - `Item not found in the menu.`: Indicates that the specified item is not in the menu.
+ - `Basket full, Please choose a bigger basket.`: Indicates that the basket is full and a larger basket is needed.
+
+### General Figure 
+
++------------------------+  +------------------------+
+|        User            |          |        System          |
+|                        |          |                        |
+|  displayItemPrice()    | -------->|                        |
+|  addItem()             | -------->|                        |
+|  calculateTotal()      | -------->|                        |
+|                        |          |                        |
++------------------------+          +------------------------+
+          |                                    |
+          |                                    |
++------------------------+          +------------------------+
+|        Menu            |          |        Basket          |
+|                        |          |                        |
+|  getMenu()             | -------->|  displayItemPrice()    |
+|                        |          |  addItem()             |
++------------------------+          |  calculateTotal()      |
+                                    |  getBasket()           |
+                                    |  getBasketSize()       |
+                                    +------------------------+
