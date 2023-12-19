@@ -97,6 +97,7 @@ describe('Basket', () => {
       const alert = basket.removeItem('Kebab') // Attempting to remove an item not in the basket
       expect(alert).toEqual(expected) // Asserting the received alert matches the expected message
     })
+
     // Test 8: Check the price of a specific item in the basket
     it('price checker for items', () => {
       const expected = 3.99 // Expected price of the brownie
