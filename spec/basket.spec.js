@@ -6,9 +6,7 @@ const Basket = require('../src/basket.js')
 describe('Basket', () => {
   // Variables to store basket instances and different basket sizes
   let basket
-  const smallBasket = 5
-  const mediumBasket = 10
-  const largeBasket = 15
+  const sizes = { small: 5, medium: 10, large: 15 }
 
   // beforeEach is a Jest hook that runs before each test in this suite
   // It's used here to initialize a new Basket instance before every test
@@ -60,63 +58,26 @@ describe('Basket', () => {
   })
 
   // Describe block that has all the basket capacity features
-  describe('Basket capacity', () => {
-    // Test 4: Create a basket with a larger size and check if size is set correctly
-    it('Create basket with larger size', () => {
-      const expected = largeBasket // Expected basket size
-
-      const largeBasketInstance = new Basket(largeBasket)
-      const checkSize = largeBasketInstance.basketSize // Retrieving the size of the new basket
-      expect(checkSize).toEqual(expected) // Asserting the size of the new basket
-    })
-
-    // Test 5: changing basket size(large)
-    it('Basket capacity changing', () => {
-      const largeBasketInstance = new Basket(largeBasket)
-      expect(largeBasketInstance.basketSize).toBe(15)
-    })
-
-    // Test 6: create a basket with a medium size and check if size is set correctly
-    it('Create basket with medium size', () => {
-      const expected = mediumBasket // Expected basket size
-
-      const mediumBasketInstance = new Basket(mediumBasket)
-      const checkSize = mediumBasketInstance.basketSize // Retrieving the size of the new basket
-      expect(checkSize).toEqual(expected) // Asserting the size of the new basket
-    })
-
-    // Test 7: changing basket size(medium)
-    it('Basket capacity changing', () => {
-      const mediumBasketInstance = new Basket(mediumBasket)
-      expect(mediumBasketInstance.basketSize).toBe(10)
-    })
-
-    // Test 8: create a basket with a small size and check if size is set correctly
-    it('Create basket with small size', () => {
-      const expected = smallBasket // Expected basket size
-
-      const smallBasketInstance = new Basket(smallBasket)
-      const checkSize = smallBasketInstance.basketSize // Retrieving the size of the new basket
-      expect(checkSize).toEqual(expected) // Asserting the size of the new basket
-    })
-
-    // Test 9: changing basket size(small)
-    it('Basket changing capacity', () => {
-      const smallBasketInstance = new Basket(smallBasket)
-      expect(smallBasketInstance.basketSize).toBe(5)
+  describe('Basket size and capacity', () => {
+    Object.keys(sizes).forEach((size) => {
+      // Test 4: select basket size
+      it(`should create a ${size} basket with correct size`, () => {
+        const basketInstance = new Basket(sizes[size])
+        expect(basketInstance.basketSize).toBe(sizes[size])
+      })
     })
   })
 
   // Desribe block that has other features from the rest
   describe('Cool other features', () => {
-    // Test 10: Check if the basket is initially empty
+    // Test 5: Check if the basket is initially empty
     it('Get all basket', () => {
       const expected = [] // Expected result (empty array)
       const getBasket = basket.getBasket() // Method call to get basket contents
       expect(getBasket).toEqual(expected) // Assertion to check if the basket is empty
     })
 
-    // Test 11: Check if an alert is returned when the basket reaches its capacity
+    // Test 6: Check if an alert is returned when the basket reaches its capacity
     it('Alert when basket is full', () => {
       const expected = 'Basket full, Please choose a bigger basket.'
 
@@ -127,7 +88,7 @@ describe('Basket', () => {
       expect(alert).toEqual(expected) // Asserting the received alert matches the expected message
     })
 
-    // Test 12: Check if the correct alert is returned when trying to remove an item that's not in the basket
+    // Test 7: Check if the correct alert is returned when trying to remove an item that's not in the basket
     it('Alert when trying to remove item that doesnt exist inside basket', () => {
       const expected = 'This item is not in the basket.'
 
@@ -136,7 +97,7 @@ describe('Basket', () => {
       const alert = basket.removeItem('Kebab') // Attempting to remove an item not in the basket
       expect(alert).toEqual(expected) // Asserting the received alert matches the expected message
     })
-    // Test 13: Check the price of a specific item in the basket
+    // Test 8: Check the price of a specific item in the basket
     it('price checker for items', () => {
       const expected = 3.99 // Expected price of the brownie
 
@@ -145,7 +106,7 @@ describe('Basket', () => {
       expect(checkPrice).toEqual(expected) // Asserting the received price matches the expected price
     })
 
-    // Test 14: Calculate and check the total price of items in the basket
+    // Test 9: Calculate and check the total price of items in the basket
     it('basket total', () => {
       const expected = '£29.93' // Expected total price
 
