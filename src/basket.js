@@ -64,11 +64,21 @@ class Basket {
 module.exports = Basket */
 
 class Basket {
+    //no change here for part three
     constructor(capacity = 5) {
         this.basket = []
         this.menu = Menu.getMenu()
         this.basketSize = capacity
 
+    }
+    
+    //display item added 
+    displayItemPrice(itemSku) {
+        const item = this.menu[itemSku]
+        if (!item) {
+            throw new Error("Item not found in the menu.")
+        }
+        return `Item: ${item.name}, Price: £${item.price.toFixed(2)}`
     }
 
 
@@ -85,32 +95,41 @@ class Basket {
             throw new Error("Item not found in the menu.")
         }
     }*/
+    
     addItem(itemSku, quantity) {
-        const price = this.menu[itemSku]
-        if (!price) {
-            throw new Error("Item not found in the menu.")
+        const item = this.menu[itemSku]
+        if (!item) {
+            throw new Error("Item not found in the menu.");
         }
         if (this.basket.length + quantity > this.basketSize) {
             throw new Error("Basket full, Please choose a bigger basket.")
         }
         const newItem = {
             sku: itemSku,
+            name: item.name,
             quantity: quantity,
-            price: price,
+            price: item.price,
         }
         this.basket.push(newItem)
+        return this.displayItemPrice(itemSku)
     }
 
-    removeItem(itemSku) {
+    /*removeItem(itemSku) {
         const index = this.basket.findIndex(item => item.sku === itemSku)
         if (index === -1) {
             throw new Error("Item not found in the basket.")
         }
         this.basket.splice(index, 1)
     }
+  }*/
+    calculateTotal() {
+        return this.basket.reduce((total, item) => total + item.quantity * item.price, 0).toFixed(2)
+    }
+
     getBasket() {
         return this.basket
     }
+
     getBasketSize() {
         return this.basketSize
     }
