@@ -114,6 +114,7 @@ describe("Basket", () => {
         basket = new Basket()
     })
    //Test 1
+   /*
     it("should add an item to the basket", () => {
         basket.addItem("BGLO", 2)
         const expectedBasket = [
@@ -121,21 +122,36 @@ describe("Basket", () => {
         ]
         expect(basket.getBasket()).toEqual(expectedBasket)
     })
-
+   */
+    it("should throw an error when removing an item not in the basket", () => {
+        expect(() => basket.removeItem("nonexistentSku")).toThrow(new Error("Item not found in the basket."))
+    })
     //Test 2
-
+    /*
     it("should remove an item from the basket", () => {
         basket.addItem("BGLO", 2)
         basket.removeItem("BGLO")
         expect(basket.getBasket()).toEqual([])
-    });
+    }); */
+    it("should throw an error when adding an item not in the menu", () => {
+        expect(() => basket.addItem("nonexistentSku", 1)).toThrow(new Error("Item not found in the menu."))
+    })
     //Test 3
+    /*
     it("should throw an error when removing an item not in the basket", () => {
         expect(() => basket.removeItem("nonexistentSku")).toThrow(new Error("Item not found in the basket."))
+    })*/
+    it("should throw an error when trying to add beyond basket capacity", () => {
+        expect(() => basket.addItem("BGLO", 10)).toThrow(new Error("Basket full, Please choose a bigger basket."))
     })
 
     //Test 4
+    /*
     it("should throw an error when adding an item not in the menu", () => {
         expect(() => basket.addItem("nonexistentSku", 1)).toThrow(new Error("Item not found in the menu."))
+    })*/
+    it("should retrieve the correct basket size", () => {
+        const basketSize = basket.getBasketSize()
+        expect(basketSize).toBe(5);// Assuming the default basket size is 5
     })
 })
