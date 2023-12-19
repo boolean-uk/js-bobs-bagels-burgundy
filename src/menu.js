@@ -26,18 +26,4 @@ const Menu = {
     },
 };
 
-module.exports = Menu;
-
-// inventory.js
-const Inventory = {
-    getInventory: () => {
-        return {
-            inventory: [
-                // ... (your existing inventory entries)
-            ],
-        };
-    },
-};
-
-module.exports = Inventory;
-
+module.exports = Menu

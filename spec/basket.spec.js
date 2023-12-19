@@ -1,8 +1,8 @@
-const Basket = require("../src/basket.js")
-//adding menu and inventory const
-const Menu = require("../src/menu.js")
-const Inventory = require("../src/inventory.js")
+const Menu = require("../src/menu.js");
+const Basket = require("../src/basket.js");
+const Inventory = require("../inventory.json")
 
+/*
 describe("Basket", () => {
     let basket
     const smallBasket = 5;
@@ -105,5 +105,37 @@ describe("Basket", () => {
         basket.addItem("brownie", 3)
         let total = basket.basketTotal()
         expect(total).toEqual(expected)
+    })
+})*/
+describe("Basket", () => {
+    let basket
+
+    beforeEach(() => {
+        basket = new Basket()
+    })
+   //Test 1
+    it("should add an item to the basket", () => {
+        basket.addItem("BGLO", 2)
+        const expectedBasket = [
+            { sku: "BGLO", quantity: 2, price: 0.49 },
+        ]
+        expect(basket.getBasket()).toEqual(expectedBasket)
+    })
+
+    //Test 2
+
+    it("should remove an item from the basket", () => {
+        basket.addItem("BGLO", 2)
+        basket.removeItem("BGLO")
+        expect(basket.getBasket()).toEqual([])
+    });
+    //Test 3
+    it("should throw an error when removing an item not in the basket", () => {
+        expect(() => basket.removeItem("nonexistentSku")).toThrow(new Error("Item not found in the basket."))
+    })
+
+    //Test 4
+    it("should throw an error when adding an item not in the menu", () => {
+        expect(() => basket.addItem("nonexistentSku", 1)).toThrow(new Error("Item not found in the menu."))
     })
 })
