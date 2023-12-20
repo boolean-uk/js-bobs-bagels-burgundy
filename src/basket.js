@@ -21,16 +21,20 @@ class Basket {
     }
   }
   addItem(itemName, itemQuantity) {
+    if (this.basket.length >= this.basketSize) {
+      throw new Error('Basket is full')
+    }
+
     const fullMenu = MENU.GetMenu()
-    for (const items in fullMenu) {
-      if (items === itemName) {
-        const insideBasket = {
-          item: itemName,
-          quantity: itemQuantity,
-          price: fullMenu[items]
-        }
-        this.basket.push(insideBasket)
+    const selectedMenuItem = fullMenu[itemName]
+
+    if (selectedMenuItem !== undefined) {
+      const insideBasket = {
+        item: itemName,
+        quantity: itemQuantity,
+        price: selectedMenuItem
       }
+      this.basket.push(insideBasket)
     }
   }
 
