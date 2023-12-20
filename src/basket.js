@@ -52,9 +52,10 @@ class Basket {
   }
 
   basketCapacity() {
-    const totalCapacity = this.basket.reduce((total, quantity) => {
-      return total + quantity.quantity
-    }, 0)
+    const totalCapacity = this.basket.reduce(
+      (total, item) => total + item.quantity,
+      0
+    )
     if (totalCapacity > this.basketSize) {
       return 'Basket full, Please choose a bigger basket.'
     }
@@ -62,21 +63,15 @@ class Basket {
 
   priceChecker(itemName) {
     const fullMenu = MENU.GetMenu()
-    for (const items in fullMenu)
-      if (itemName === items) {
-        return fullMenu[items]
-      }
+    return fullMenu[itemName]
   }
 
   basketTotal() {
-    let eachItem = []
-    for (let i = 0; i < this.basket.length; i++) {
-      eachItem.push(this.basket[i].quantity * this.basket[i].price)
-    }
-    const totalPrice = eachItem.reduce((total, quantity) => {
-      return total + quantity
-    }, 0)
-    return '£' + totalPrice
+    const totalPrice = this.basket.reduce(
+      (total, item) => total + item.quantity * item.price,
+      0
+    )
+    return `£${totalPrice.toFixed(2)}`
   }
 }
 
