@@ -1,15 +1,24 @@
 const MENU = require('./menu.js')
-const smallBasket = 5
-const mediumBasket = 10
-const largeBasket = 15
 
 class Basket {
-  constructor(capacity = smallBasket) {
+  static basketSizes = {
+    small: 5,
+    medium: 10,
+    large: 15
+  }
+  constructor(capacity = Basket.basketSizes.small) {
     this.basket = []
     this.basketSize = capacity
   }
   getBasket() {
     return this.basket
+  }
+  setBasketSize(size) {
+    if (Object.values(Basket.basketSizes).includes(size)) {
+      this.basketSize = size
+    } else {
+      throw new Error('Invalid basket size')
+    }
   }
   addItem(itemName, itemQuantity) {
     const fullMenu = MENU.GetMenu()
