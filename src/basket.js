@@ -1,63 +1,80 @@
-const MENU = require("./menu.js")
-const smallBasket = 5;
-const mediumBasket = 10;
-const largeBasket = 15;
+const MENU = require('./menu.js');
 
-class Basket {
+const SMALL_BASKET = 5;
+const MEDIUM_BASKET = 10;
+const LARGE_BASKET = 15;
 
-    constructor(capacity = smallBasket) {
-        this.basket = []
-        this.basketSize = capacity
-    }
-    getBasket() {
-        return this.basket
-    }
-    addItem(itemName, itemQuantity) {
-        const fullMenu = MENU.GetMenu()
-        for (const items in fullMenu) {
-            if (items === itemName) {
-                const insideBasket = {
-                    item: itemName,
-                    quantity: itemQuantity,
-                    price: fullMenu[items]
-                }
-                this.basket.push(insideBasket)
-            }
-        }
-    }
+class ShoppingBasket {
+  // Constructor to initialize the basket with a default capacity
+  constructor(capacity = 5) {
+    this.items = []; // Array to hold basket items
+    this.capacity = capacity; // Capacity of the basket
+  }
 
-    removeItem(itemName) {
-        for (let i = 0; i < this.basket.length; i++)
-            if (this.basket[i].item === itemName) {
-                this.basket.splice(i, 1)
-                return this.basket
-            }
-            else if (this.basket[i].item !== itemName)
-                return "This item is not in the basket."
+  // Getter method to retrieve the basket items
+  getItems() {
+    return this.items;
+  }
+
+  // Setter method to set the basket size with validation
+  setBasketSize(size) {
+    const validSizes = [SMALL_BASKET, MEDIUM_BASKET, LARGE_BASKET];
+    if (validSizes.includes(size)) {
+      this.capacity = size;
+    } else {
+      throw new Error('Invalid basket size');
+    }
+  }
+
+  // Method to add an item to the basket, with checks for basket capacity and menu availability
+  addItem(itemName, itemQuantity) {
+    if (this.items.length >= this.capacity) {
+      throw new Error('Basket is full');
     }
 
-    basketCapacity() {
-        const totalCapacity = this.basket.reduce((total, quantity) => { return total + quantity.quantity }, 0)
-        if (totalCapacity > this.basketSize) {
-            return "Basket full, Please choose a bigger basket."
-        }
-    }
+    const menu = MENU.getMenu();
+    const item = menu[itemName];
 
-    priceChecker(itemName) {
-        const fullMenu = MENU.GetMenu()
-        for (const items in fullMenu)
-            if (itemName === items) { return fullMenu[items] }
+    if (item !== undefined) {
+      const basketItem = {
+        item: itemName,
+        quantity: itemQuantity,
+        price: item,
+      };
+      this.items.push(basketItem);
     }
+  }
 
-    basketTotal() {
-        let eachItem = []
-        for (let i = 0; i < this.basket.length; i++) {
-            eachItem.push(this.basket[i].quantity * this.basket[i].price)
-        }
-        const totalPrice = eachItem.reduce((total, quantity) => { return total + quantity }, 0)
-        return ("£" + totalPrice)
+  // Method to remove an item from the basket
+  removeItem(itemName) {
+    const index = this.items.findIndex((item) => item.item === itemName);
+    if (index !== -1) {
+      this.items.splice(index, 1);
+      return this.items;
+    } else {
+      return 'This item is not in the basket.';
     }
+  }
+
+  // Method to check the basket capacity against the items added
+  basketCapacity() {
+    const totalQuantity = this.items.reduce((total, item) => total + item.quantity, 0);
+    if (totalQuantity > this.capacity) {
+      return 'Basket full, please choose a bigger basket.';
+    }
+  }
+
+  // Method to check the price of an item
+  priceChecker(itemName) {
+    const menu = MENU.getMenu();
+    return menu[itemName];
+  }
+
+  // Method to calculate the total price of items in the basket
+  basketTotal() {
+    const totalPrice = this.items.reduce((total, item) => total + item.quantity * item.price, 0);
+    return '£' + totalPrice.toFixed(2); // Fixing to two decimal places for currency
+  }
 }
 
-
-module.exports = Basket
+module.exports = ShoppingBasket;
