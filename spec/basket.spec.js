@@ -77,8 +77,9 @@ describe("Basket", () => {
 
 })
 
-   
-    //Test 7 
+   describe('Can see the price of each item', 'Can determin the total price of the bagels', ()=>{
+
+         //Test 7 
     it("price checker for items", () => {
         const expected = 3.99
 
@@ -110,4 +111,6 @@ describe("Basket", () => {
         let total = basket.basketTotal()
         expect(total).toEqual(expected)
     })
+   })
+   
 })
