@@ -9,37 +9,42 @@ describe("Basket", () => {
         basket = new Basket();
     });
 
-    //Test 1
-    it("Get all basket", () => {
-        const expected = []
-        let getBasket = basket.getBasket()
-        expect(getBasket).toEqual(expected)
+    describe('Member of the  public an order a bagel', 'added Item to the basket', 'remove item', ()=>{
+           //Test 1
+        it("Get all basket", () => {
+            const expected = []
+            let getBasket = basket.getBasket()
+            expect(getBasket).toEqual(expected)
+        })
+
+        //Test 2
+        it("Add items to basket", () => {
+            const expected = [
+                { item: "bagel", quantity: 1, price: 2.99 },
+                { item: "brownie", quantity: 3, price: 3.99 }]
+
+            basket.addItem("bagel", 1)
+            basket.addItem("brownie", 3)
+            let bagelInBasket = basket.getBasket()
+            expect(bagelInBasket).toEqual(expected)
+        })
+
+        //Test 3
+        it("Remove bagel from basket", () => {
+            const expected = this.basket = [
+                { item: "brownie", quantity: 3, price: 3.99 }]
+
+            basket.addItem("bagel", 1)
+            basket.addItem("brownie", 3)
+            let removeItem = basket.removeItem("bagel")
+            expect(removeItem).toEqual(expected)
+        })
+
     })
+     
+    describe('Can not overfill small basket', 'Can create baskets with larger capacity','Can know when removed item doesnt exist', ()=>{
 
-    //Test 2
-    it("Add items to basket", () => {
-        const expected = [
-            { item: "bagel", quantity: 1, price: 2.99 },
-            { item: "brownie", quantity: 3, price: 3.99 }]
-
-        basket.addItem("bagel", 1)
-        basket.addItem("brownie", 3)
-        let bagelInBasket = basket.getBasket()
-        expect(bagelInBasket).toEqual(expected)
-    })
-
-    //Test 3
-    it("Remove bagel from basket", () => {
-        const expected = this.basket = [
-            { item: "brownie", quantity: 3, price: 3.99 }]
-
-        basket.addItem("bagel", 1)
-        basket.addItem("brownie", 3)
-        let removeItem = basket.removeItem("bagel")
-        expect(removeItem).toEqual(expected)
-    })
-
-    //Test 4
+        //Test 4
     it("Alert when basket is full", () => {
         const expected =
 
@@ -70,7 +75,11 @@ describe("Basket", () => {
         expect(alert).toEqual(expected)
     })
 
-    //Test 7 
+})
+
+   describe('Can see the price of each item', 'Can determin the total price of the bagels', ()=>{
+
+         //Test 7 
     it("price checker for items", () => {
         const expected = 3.99
 
@@ -102,4 +111,6 @@ describe("Basket", () => {
         let total = basket.basketTotal()
         expect(total).toEqual(expected)
     })
+   })
+   
 })
