@@ -41,7 +41,41 @@ describe("Basket", () => {
         })
 
     })
+     
+    describe('Can not overfill small basket', 'Can create baskets with larger capacity','Can know when removed item doesnt exist', ()=>{
 
+        //Test 4
+    it("Alert when basket is full", () => {
+        const expected =
+
+            "Basket full, Please choose a bigger basket."
+
+        basket.addItem("bagel", 3)
+        basket.addItem("brownie", 5)
+        let alert = basket.basketCapacity()
+        expect(alert).toEqual(expected)
+    })
+
+    //Test 5
+    it("Create basket with larger size", () => {
+        const expected = this.basketSize = largeBasket
+
+        new Basket(largeBasket)
+        let checkSize = this.basketSize
+        expect(checkSize).toEqual(expected)
+    })
+
+    //Test 6
+    it("Alert when trying to remove item that doesnt exist inside basket", () => {
+        const expected = "This item is not in the basket."
+
+        basket.addItem("bagel", 3)
+        basket.addItem("brownie", 5)
+        let alert = basket.removeItem("Kebab", 10)
+        expect(alert).toEqual(expected)
+    })
+
+})
 
    
     //Test 7 
