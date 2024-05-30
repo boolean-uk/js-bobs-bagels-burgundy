@@ -24,6 +24,12 @@ class Basket {
                 this.basket.push(insideBasket)
             }
         }
+        /*this.contents.filter()
+        for(let i = 0; i < this.contents.length; i++){
+            for (let j = 0; j < )
+        }
+    }
+    */
     }
 
     removeItem(itemName) {
@@ -57,6 +63,18 @@ class Basket {
         const totalPrice = eachItem.reduce((total, quantity) => { return total + quantity }, 0)
         return ("£" + totalPrice)
     }
+
+    /*
+    getTotal() {
+        let total = 0
+        this.checkDeals()
+        console.log(this.countBagelsinBasket())
+      for (let i = 0; i < this.contents.length; i++) {
+         total += this.contents[i].price * 100
+      }
+     return total/100
+    }
+*/
 }
 
 
