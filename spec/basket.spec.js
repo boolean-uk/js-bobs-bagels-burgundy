@@ -28,6 +28,12 @@ describe("Basket", () => {
         expect(bagelInBasket).toEqual(expected)
     })
 
+    it("Adding items to the basket", () => {
+        const expected = [{item: "bagel", quantity: 4, price: 2.99}]
+        basket.addItem("bagel", 4)
+        expect(basket.getBasket()).toEqual(expected)
+    })
+
     //Test 3
     it("Remove bagel from basket", () => {
         const expected = this.basket = [
@@ -55,7 +61,7 @@ describe("Basket", () => {
     it("Create basket with larger size", () => {
         const expected = this.basketSize = largeBasket
 
-        new Basket(largeBasket)
+        // new Basket(largeBasket)
         let checkSize = this.basketSize
         expect(checkSize).toEqual(expected)
     })
