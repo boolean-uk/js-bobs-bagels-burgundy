@@ -3,15 +3,13 @@ const smallBasket = 5;
 const mediumBasket = 10;
 const largeBasket = 15;
 
-class Basket
-    {
+class Basket {
 
     constructor(capacity = smallBasket) {
         this.basket = []
-        this.basketSize = capacity;
+        this.basketSize = capacity
     }
-    getBasket()
-        {
+    getBasket() {
         return this.basket
     }
     addItem(itemName, itemQuantity) {
@@ -24,26 +22,23 @@ class Basket
                     price: fullMenu[items]
 
                     
-                }this.basket.push(insideBasket)
+                }
+                this.basket.push(insideBasket)
             }
         }
-        /*this.contents.filter()
-        for(let i = 0; i < this.contents.length; i++){
-            for (let j = 0; j < )
-        }
-    }
-    */
     }
 
-// removes an item from the basket
     removeItem(itemName) {
-        for (let i = 0; i < this.basket.length; i++)
-            if (this.basket[i].item === itemName) {
+        for (let i = 0; i < this.basket.length; i++) {
+            const item = this.basket[i].item
+            if (item === itemName) {
                 this.basket.splice(i, 1)
                 return this.basket
             }
-            else if (this.basket[i].item !== itemName)
+            else if (item !== itemName)
                 return "This item is not in the basket."
+
+        }
     }
 
     basketCapacity() {
@@ -68,17 +63,6 @@ class Basket
         return ("£" + totalPrice) // returns the total price with a currency as a string
     }
 
-    /*
-    getTotal() {
-        let total = 0
-        this.checkDeals()
-        console.log(this.countBagelsinBasket())
-      for (let i = 0; i < this.contents.length; i++) {
-         total += this.contents[i].price * 100
-      }
-     return total/100
-    }
-*/
 }
 
 
